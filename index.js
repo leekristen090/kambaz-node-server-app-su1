@@ -13,7 +13,12 @@ const app = express();
 app.use(
     cors({
              credentials: true,
-             origin: process.env.NETLIFY_URL || "http://localhost:5173",
+             origin: [
+                 process.env.NETLIFY_URL,
+                 "http://localhost:5173",
+                 "https://kambaz-react-web-app-leekri.netlify.app/" // Add your actual Netlify URL here
+             ]
+             // origin: process.env.NETLIFY_URL || "http://localhost:5173",
              // origin: process.env.NETLIFY_URL,
          })
 );
