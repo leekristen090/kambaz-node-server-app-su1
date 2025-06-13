@@ -9,6 +9,9 @@ import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentsRoutes from "./Kambaz/Assignments/routes.js";
 import EnrollmentsRoutes from "./Kambaz/Enrollments/routes.js";
+import mongoose from "mongoose";
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz"
+mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(
     cors({
@@ -16,7 +19,7 @@ app.use(
              origin: [
                  process.env.NETLIFY_URL,
                  "http://localhost:5173",
-                 "https://kambaz-react-web-app-leekri.netlify.app/" // Add your actual Netlify URL here
+                 "https://kambaz-react-web-app-leekri.netlify.app/"
              ]
              // origin: process.env.NETLIFY_URL || "http://localhost:5173",
              // origin: process.env.NETLIFY_URL,
