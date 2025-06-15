@@ -8,9 +8,8 @@ import session from "express-session";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentsRoutes from "./Kambaz/Assignments/routes.js";
-import EnrollmentsRoutes from "./Kambaz/Enrollments/routes.js";
 import mongoose from "mongoose";
-const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz"
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz";
 mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(
@@ -44,7 +43,7 @@ UserRoutes(app);
 CourseRoutes(app);
 ModuleRoutes(app);
 AssignmentsRoutes(app);
-EnrollmentsRoutes(app);
+// EnrollmentsRoutes(app);
 Lab5(app);
 Hello(app);
 app.listen(process.env.PORT || 4000);

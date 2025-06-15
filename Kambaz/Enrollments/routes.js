@@ -12,12 +12,12 @@ export default function EnrollmentsRoutes(app) {
     });
     app.get("/api/enrollments/users/:userId", (req, res) => {
         const {userId} = req.params;
-        const enrollments = dao.findEnrollmentsForUser(userId);
+        const enrollments = dao.findCoursesForUser(userId);
         res.json(enrollments);
     });
     app.get("/api/enrollments/courses/:courseId", (req, res) => {
         const {courseId} = req.params;
-        const enrollments = dao.findEnrollmentsForCourse(courseId);
+        const enrollments = dao.findUsersForCourse(courseId);
         res.json(enrollments);
     });
 }
