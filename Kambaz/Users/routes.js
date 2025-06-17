@@ -75,17 +75,6 @@ export default function UserRoutes(app) {
         res.json(currentUser);
     };
     const findCoursesForUser = async (req, res) => {
-        // let { userId } = req.params;
-        // if (userId === "current") {
-        //     const currentUser = req.session["currentUser"];
-        //     if (!currentUser) {
-        //         res.sendStatus(401);
-        //         return;
-        //     }
-        //     userId = currentUser._id;
-        // }
-        // const courses = courseDao.findCoursesForEnrolledUser(userId);
-        // res.json(courses);
         const currentUser = req.session["currentUser"];
         if (!currentUser) {
             res.sendStatus(401);
@@ -96,15 +85,14 @@ export default function UserRoutes(app) {
             res.json(courses);
             return;
         }
-        let { uid } = req.params;
-        if (uid === "current") {
-            uid = currentUser._id;
+        let { userId } = req.params;
+        if (userId === "current") {
+            userId = currentUser._id;
         }
-        // console.log("Fetching courses for user:", uid);
-        const courses = await enrollmentsDao.findCoursesForUser(uid);
-        // console.log("Found courses:", courses);
+        const courses = await enrollmentsDao.findCoursesForUser(userId);
         res.json(courses);
     };
+
     const createCourse = (req, res) => {
         const currentUser = req.session["currentUser"];
         const newCourse = courseDao.createCourse(req.body);
