@@ -1,7 +1,6 @@
 import * as dao from "./dao.js";
 import * as courseDao from "../Courses/dao.js";
 import * as enrollmentsDao from "../Enrollments/dao.js";
-import {enrollUserInCourse} from "../Enrollments/dao.js";
 // let currentUser = null;
 export default function UserRoutes(app) {
     const createUser = async (req, res) => {
@@ -66,7 +65,7 @@ export default function UserRoutes(app) {
         req.session.destroy();
         res.sendStatus(200);
     };
-    const profile = async (req, res) => {
+    const profile = (req, res) => {
         const currentUser = req.session["currentUser"];
         if (!currentUser) {
             res.sendStatus(401);
