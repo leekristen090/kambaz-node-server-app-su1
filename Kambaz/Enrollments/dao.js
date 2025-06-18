@@ -1,7 +1,7 @@
 import model from "./model.js";
 
 export function enrollUserInCourse(user, course) {
-    const newEnrollment = {user, course, _id: `${user}-${course}`};
+    const newEnrollment = { user, course, _id: `${user}-${course}` };
     return model.create(newEnrollment);
 }
 export function unenrollUserFromCourse(user, course) {
