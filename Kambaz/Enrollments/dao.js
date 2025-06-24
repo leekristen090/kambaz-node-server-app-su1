@@ -17,3 +17,6 @@ export async function findUsersForCourse(courseId) {
     return enrollments.map((enrollment) => enrollment.user);
     // return model.find({course: courseId});
 }
+export async function deleteEnrollmentsForCourse(courseId) {
+    return model.deleteMany({course: courseId});
+}

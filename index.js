@@ -15,9 +15,18 @@ const app = express();
 app.use(
     cors({
              credentials: true,
-             origin: process.env.NETLIFY_URL
+             origin: process.env.NETLIFY_URL || "http://localhost:5173"
          })
 );
+// app.use(
+//     cors({
+//              credentials: true,
+//              origin: [
+//                  process.env.NETLIFY_URL || "http://localhost:5173",
+//                  "https://your-second-domain.com" // Replace with your second domain
+//              ]
+//          })
+// );
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kambaz",
     resave: false,
@@ -28,7 +37,7 @@ if (process.env.NODE_ENV !== "development") {
     sessionOptions.cookie = {
         sameSite: "none",
         secure: true,
-        // domain: process.env.NODE_SERVER_DOMAIN,
+        domain: process.env.NODE_SERVER_DOMAIN,
     };
 }
 app.use(session(sessionOptions));
