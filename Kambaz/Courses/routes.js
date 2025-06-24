@@ -34,6 +34,7 @@ export default function CourseRoutes(app) {
         const status = await dao.updateCourse(courseId, courseUpdates);
         res.send(status);
     });
+
     app.post("/api/courses/:courseId/modules", async (req, res) => {
         const { courseId } = req.params;
         const module = {

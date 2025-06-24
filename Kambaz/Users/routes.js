@@ -8,7 +8,9 @@ export default function UserRoutes(app) {
         res.json(user);
     };
     const deleteUser = async (req, res) => {
-        const status = await dao.deleteUser(req.params.userId);
+        const {userId} = req.params;
+        const status = await dao.deleteUser(userId);
+        await enrollmentsDao.deleteEnrollmentsForUser(userId);
         res.json(status);
     };
     const findAllUsers = async (req, res) => {
@@ -92,10 +94,10 @@ export default function UserRoutes(app) {
         res.json(courses);
     };
 
-    const createCourse = (req, res) => {
+    const createCourse = async (req, res) => {
         const currentUser = req.session["currentUser"];
         const newCourse = courseDao.createCourse(req.body);
-        enrollmentsDao.enrollUserInCourse(currentUser._id, newCourse._id);
+        await enrollmentsDao.enrollUserInCourse(currentUser._id, newCourse._id);
         res.json(newCourse);
     };
     const enrollUserInCourse = async (req, res) => {
